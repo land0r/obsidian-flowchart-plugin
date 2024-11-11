@@ -1,96 +1,98 @@
-# Obsidian Sample Plugin
+# Obsidian Flowchart Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This is a custom plugin for rendering flowcharts in Obsidian using **flowchart.js**. It allows users to insert and render flowcharts directly within Obsidian notes using a dedicated code block syntax.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
+- Renders flowcharts using `flowchart.js` syntax within Obsidian notes.
+- Supports customization of flowchart styles, such as line width, font size, colors, and element styling, directly from the plugin settings.
+- Adjustable settings for each part of the flowchart, including start and end symbols, decision conditions, operations, and more.
+- Provides an easy way to create interactive and visually appealing diagrams in your notes.
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+## How to Use
+1. Open a note in Obsidian and add a `flowchart` code block, like this:
+    ```markdown
+    ```flowchart
+    st=>start: Start
+    op=>operation: My Operation
+    cond=>condition: Yes or No?
+    e=>end: End
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+    st->op->cond
+    cond(yes)->e
+    cond(no)->op
+    ```
+2. The plugin will render the flowchart according to the configuration specified in the plugin settings.
 
-## First time developing plugins?
+## Plugin Settings
+The plugin includes various settings that allow you to customize the appearance of the flowchart:
+- **Line Width**: Controls the width of lines in the flowchart.
+- **Font Size**: Sets the font size for text within the flowchart.
+- **Font Color**: Changes the color of the font.
+- **Line Color**: Sets the color of the lines connecting elements.
+- **Element Color**: Adjusts the color of the shapes around text.
+- **Fill Color**: Sets the background fill color for elements.
+- **Yes/No Text**: Customizes the labels for decision paths.
 
-Quick starting guide for new plugin devs:
+You can access these settings under **Settings** > **Community Plugins** > **Flowchart Plugin**.
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Development Guide
 
-## Releasing new releases
+### First-Time Plugin Development
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+If you're new to Obsidian plugin development:
+- Clone this repository or use it as a template.
+- Ensure NodeJS is installed (minimum v16).
+- Run `npm install` to install dependencies.
+- Use `npm run dev` to compile the plugin and start in watch mode.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### Building the Plugin
+To build the plugin:
+- Run `npm run build` to compile the TypeScript code.
+- Files will be output to the `dist` folder for use in Obsidian.
 
-## Adding your plugin to the community plugin list
+## Manually Installing the Plugin
+If you'd like to install the plugin manually:
+1. Copy `main.js`, `styles.css`, and `manifest.json` to your Obsidian vault at `.obsidian/plugins/your-plugin-id/`.
+2. Reload Obsidian and enable the plugin in **Settings** > **Community Plugins**.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## Releasing New Versions
+1. Update `manifest.json` with the new version.
+2. Update `versions.json` to specify compatible Obsidian versions.
+3. Create a GitHub release using the new version number as the tag.
+4. Upload `manifest.json`, `main.js`, and `styles.css` to the release.
 
-## How to use
+## Troubleshooting
+If you encounter issues with rendering or plugin behavior:
+- Ensure you are using a compatible version of Obsidian.
+- Check the developer console (`Cmd + Option + I` on macOS or `Ctrl + Shift + I` on Windows/Linux) for error messages.
+- Adjust settings to verify if certain configuration options are causing issues.
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## Contributing
+Contributions to improve the plugin or add new features are welcome! Submit a pull request or open an issue to discuss potential changes.
 
-## Manually installing the plugin
-
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
-
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+## Funding
+If you find this plugin helpful, consider supporting its development:
 
 ```json
 {
-    "fundingUrl": "https://buymeacoffee.com"
+    "fundingUrl": "https://buymeacoffee.com/yourusername"
 }
 ```
 
-If you have multiple URLs, you can also do:
+Or multiple options:
 
 ```json
 {
     "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
+        "Buy Me a Coffee": "https://buymeacoffee.com/yourusername",
+        "GitHub Sponsor": "https://github.com/sponsors/yourusername"
     }
 }
 ```
 
-## API Documentation
+## License
+This plugin is licensed under the MIT License.
 
-See https://github.com/obsidianmd/obsidian-api
+---
+
+Let me know if you need further customization!

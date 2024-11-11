@@ -53,13 +53,32 @@ export default class FlowchartPlugin extends Plugin {
 	}
 
 	renderFlowchart(source: string, el: HTMLElement) {
-		try {
-			const diagram = flowchart.parse(source);
-			diagram.drawSVG(el, this.settings.config);
-		} catch (error) {
-			console.error("Error rendering flowchart: ", error);
-			el.createEl('div', { text: 'Error rendering flowchart. Check your markup.' });
-		}
+		// Wrap the rendering in a requestAnimationFrame for timing
+		requestAnimationFrame(() => {
+			try {
+				const diagram = flowchart.parse(source);
+				const container = el.createEl('div', { cls: 'obsidian-flowchart-container' });
+				diagram.drawSVG(container, this.settings.config);
+
+				// Apply a fix for deprecated xlink attributes
+				this.fixXlinkAttributes(container);
+			} catch (error) {
+				console.error("Error rendering flowchart: ", error);
+				el.createEl('div', { text: 'Error rendering flowchart. Check your markup.' });
+			}
+		});
+	}
+
+	fixXlinkAttributes(el: HTMLElement) {
+		// Find elements with deprecated xlink attributes and replace them
+		const elements = el.querySelectorAll('[*|href]');
+		elements.forEach((element) => {
+			const xlinkHref = element.getAttribute('xlink:href');
+			if (xlinkHref) {
+				element.setAttribute('href', xlinkHref);
+				element.removeAttribute('xlink:href');
+			}
+		});
 	}
 
 	onunload() {
@@ -97,6 +116,36 @@ class FlowchartSettingTab extends PluginSettingTab {
 				text.setValue(this.plugin.settings.config['line-width'].toString())
 					.onChange(async (value) => {
 						this.plugin.settings.config['line-width'] = parseInt(value) || 2;
+						await this.plugin.saveSettings();
+					}));
+
+		new Setting(containerEl)
+			.setName('Line Length')
+			.setDesc('Set the line length for the flowchart.')
+			.addText(text =>
+				text.setValue(this.plugin.settings.config['line-length'].toString())
+					.onChange(async (value) => {
+						this.plugin.settings.config['line-length'] = parseInt(value) || 2;
+						await this.plugin.saveSettings();
+					}));
+
+		new Setting(containerEl)
+			.setName('Yes Text')
+			.setDesc('Text for Yes responses in the flowchart.')
+			.addText(text =>
+				text.setValue(this.plugin.settings.config['yes-text'])
+					.onChange(async (value) => {
+						this.plugin.settings.config['yes-text'] = value || 'yes';
+						await this.plugin.saveSettings();
+					}));
+
+		new Setting(containerEl)
+			.setName('No Text')
+			.setDesc('Text for No responses in the flowchart.')
+			.addText(text =>
+				text.setValue(this.plugin.settings.config['no-text'])
+					.onChange(async (value) => {
+						this.plugin.settings.config['no-text'] = value || 'no';
 						await this.plugin.saveSettings();
 					}));
 
