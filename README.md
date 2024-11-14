@@ -1,5 +1,10 @@
 # Obsidian Flowchart Plugin
 
+![Version](https://img.shields.io/github/v/tag/land0r/obsidian-flowchart-plugin?label=version)
+![Build Status](https://github.com/land0r/obsidian-flowchart-plugin/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/github/license/land0r/obsidian-flowchart-plugin)
+![GitHub Stars](https://img.shields.io/github/stars/land0r/obsidian-flowchart-plugin?style=social)
+
 This is a custom plugin for rendering flowcharts in Obsidian using **flowchart.js**. It allows users to insert and render flowcharts directly within Obsidian notes using a dedicated code block syntax.
 
 ## Features
@@ -26,7 +31,9 @@ This is a custom plugin for rendering flowcharts in Obsidian using **flowchart.j
    ```
    ````
 
-2. The plugin will render the flowchart according to the configuration specified in the plugin settings.
+2. The plugin will render the flowchart according to the configuration specified in the plugin settings. You can check more examples here: [Flowchart Plugin test](./Flowchart%20Plugin%20Test.md).
+
+![Demo](./assets/images/demo.png)
 
 ## Plugin Settings
 
@@ -41,6 +48,8 @@ The plugin includes various settings that allow you to customize the appearance 
 - **Yes/No Text**: Customizes the labels for decision paths.
 
 You can access these settings under **Settings** > **Community Plugins** > **Flowchart Plugin**.
+
+![Settings](./assets/images/settings.png)
 
 ## Development Guide
 

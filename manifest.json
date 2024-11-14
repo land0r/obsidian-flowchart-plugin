@@ -2,7 +2,7 @@
 	"id": "obsidian-flowchart-plugin",
 	"name": "Flowchart Plugin",
 	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
+	"minAppVersion": "1.5.0",
 	"description": "A plugin for rendering flowcharts using flowchart.js",
 	"author": "land0r",
 	"authorUrl": "https://github.com/land0r",
