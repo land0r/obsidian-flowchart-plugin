@@ -56,11 +56,12 @@ export default class FlowchartPlugin extends Plugin {
 		// Wrap the rendering in a requestAnimationFrame for timing
 		requestAnimationFrame(() => {
 			try {
+				const config = this.mergeSymbolSettings(this.settings.config);
 				const diagram = flowchart.parse(source);
 				const container = el.createEl('div', {
 					cls: 'obsidian-flowchart-container',
 				});
-				diagram.drawSVG(container, this.settings.config);
+				diagram.drawSVG(container, config);
 				container
 					.querySelector('svg')
 					?.setAttribute('aria-label', 'Flowchart diagram');
@@ -75,6 +76,40 @@ export default class FlowchartPlugin extends Plugin {
 				});
 			}
 		});
+	}
+
+	private mergeSymbolSettings(
+		config: Record<string, any>
+	): Record<string, any> {
+		console.log(config);
+
+		// Ensure symbols inherit main settings if not explicitly defined
+		const {
+			'font-color': fontColor,
+			'element-color': elementColor,
+			fill,
+		} = config;
+
+		const mergedSymbols = {
+			start: {
+				'font-color': fontColor,
+				'element-color': elementColor,
+				fill: fill,
+			},
+			end: {
+				'font-color': fontColor,
+				'element-color': elementColor,
+				fill: fill,
+			},
+		};
+
+		return {
+			...config,
+			symbols: {
+				...config.symbols,
+				...mergedSymbols,
+			},
+		};
 	}
 
 	fixXlinkAttributes(el: HTMLElement) {

@@ -11,3 +11,8 @@ If your plugin does not need CSS, delete this file.
 	width: 100%;
 	height: auto;
 }
+
+.vertical-tab-content .theme-notice {
+	font-size: 14px;
+	margin-bottom: 20px;
+}
