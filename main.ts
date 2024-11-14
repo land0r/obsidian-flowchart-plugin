@@ -61,13 +61,17 @@ export default class FlowchartPlugin extends Plugin {
 					cls: 'obsidian-flowchart-container',
 				});
 				diagram.drawSVG(container, this.settings.config);
+				container
+					.querySelector('svg')
+					?.setAttribute('aria-label', 'Flowchart diagram');
 
 				// Apply a fix for deprecated xlink attributes
 				this.fixXlinkAttributes(container);
 			} catch (error) {
 				console.error('Error rendering flowchart: ', error);
 				el.createEl('div', {
-					text: 'Error rendering flowchart. Check your markup.',
+					cls: 'error-message',
+					text: 'Failed to render flowchart. Check your input.',
 				});
 			}
 		});
@@ -219,6 +223,19 @@ class FlowchartSettingTab extends PluginSettingTab {
 						this.plugin.settings.config['fill'] = value || 'white';
 						await this.plugin.saveSettings();
 					})
+			);
+
+		new Setting(containerEl)
+			.setName('Reset Settings')
+			.setDesc('Reset all settings to their default values.')
+			.addButton((button) =>
+				button.setButtonText('Reset').onClick(async () => {
+					console.log('Before reset:', this.plugin.settings);
+					this.plugin.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+					console.log('After reset:', this.plugin.settings);
+					await this.plugin.saveSettings();
+					this.display();
+				})
 			);
 	}
 }
