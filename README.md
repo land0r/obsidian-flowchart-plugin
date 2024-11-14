@@ -44,15 +44,6 @@ You can access these settings under **Settings** > **Community Plugins** > **Flo
 
 ## Development Guide
 
-### First-Time Plugin Development
-
-If you're new to Obsidian plugin development:
-
-- Clone this repository or use it as a template.
-- Ensure NodeJS is installed (minimum v16).
-- Run `npm install` to install dependencies.
-- Use `npm run dev` to compile the plugin and start in watch mode.
-
 ### Building the Plugin
 
 To build the plugin:
@@ -86,31 +77,6 @@ If you encounter issues with rendering or plugin behavior:
 
 Contributions to improve the plugin or add new features are welcome! Submit a pull request or open an issue to discuss potential changes.
 
-## Funding
-
-If you find this plugin helpful, consider supporting its development:
-
-```json
-{
-	"fundingUrl": "https://buymeacoffee.com/yourusername"
-}
-```
-
-Or multiple options:
-
-```json
-{
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://buymeacoffee.com/yourusername",
-		"GitHub Sponsor": "https://github.com/sponsors/yourusername"
-	}
-}
-```
-
 ## License
 
 This plugin is licensed under the MIT License.
-
----
-
-Let me know if you need further customization!
