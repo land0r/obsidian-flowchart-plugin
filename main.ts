@@ -117,6 +117,14 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		containerEl.createEl('h2', { text: 'Flowchart Plugin Settings' });
 
+		this.addThemeNotice(containerEl);
+
+		this.addFlowchartSettings(containerEl);
+
+		this.addResetButton(containerEl);
+	}
+
+	private addFlowchartSettings(containerEl: HTMLElement): void {
 		new Setting(containerEl)
 			.setName('Line Width')
 			.setDesc('Set the line width for the flowchart.')
@@ -224,7 +232,9 @@ class FlowchartSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					})
 			);
+	}
 
+	private addResetButton(containerEl: HTMLElement): void {
 		new Setting(containerEl)
 			.setName('Reset Settings')
 			.setDesc('Reset all settings to their default values.')
@@ -237,5 +247,26 @@ class FlowchartSettingTab extends PluginSettingTab {
 					this.display();
 				})
 			);
+	}
+
+	private addThemeNotice(containerEl: HTMLElement): void {
+		const isDarkMode = document.body.classList.contains('theme-dark');
+		const isLightMode = document.body.classList.contains('theme-light');
+		let mode = '';
+
+		if (isDarkMode) {
+			mode = 'Dark';
+		} else if (isLightMode) {
+			mode = 'Light';
+		}
+
+		if (!mode) {
+			return;
+		}
+
+		containerEl.createEl('div', {
+			text: `You are in ${mode} Mode. Adjust colors for better visibility!`,
+			cls: 'theme-notice',
+		});
 	}
 }
