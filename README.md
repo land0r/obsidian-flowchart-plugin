@@ -55,7 +55,7 @@ To build the plugin:
 
 If you'd like to install the plugin manually:
 
-1. Copy `main.js`, `styles.css`, and `manifest.json` to your Obsidian vault at `.obsidian/plugins/your-plugin-id/`.
+1. Copy `main.js`, `styles.css`, and `manifest.json` to your Obsidian vault at `.obsidian/plugins/obsidian-flowchart-plugin/`.
 2. Reload Obsidian and enable the plugin in **Settings** > **Community Plugins**.
 
 ## Releasing New Versions
