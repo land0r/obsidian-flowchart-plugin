@@ -16,7 +16,7 @@ module.exports = [
 			"@typescript-eslint": typescriptEslintPlugin, // Using TypeScript-specific plugin
 		},
 		rules: {
-			"@typescript-eslint/no-unused-vars": ["error", { "args": "none" }], // Replacing 'no-unused-vars' with TS-specific version
+			"@typescript-eslint/no-unused-vars": ["error", { args: "none" }], // Replacing 'no-unused-vars' with TS-specific version
 			"@typescript-eslint/ban-ts-comment": "off", // Allowing use of ts comments if needed
 			"@typescript-eslint/no-empty-function": "off", // Allowing empty functions for flexibility
 			"no-prototype-builtins": "off", // Allowing direct calls to object's prototype functions
