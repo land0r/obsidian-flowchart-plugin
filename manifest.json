@@ -1,7 +1,7 @@
 {
-	"id": "obsidian-flowchart-plugin",
+	"id": "flowcharts",
 	"name": "Flowcharts",
-	"version": "v1.0.0",
+	"version": "1.0.0",
 	"minAppVersion": "1.5.0",
 	"description": "Render flowcharts using flowchart.js markup.",
 	"author": "land0r",
