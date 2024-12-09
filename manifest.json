@@ -3,7 +3,7 @@
 	"name": "Flowcharts",
 	"version": "1.0.0",
 	"minAppVersion": "1.5.0",
-	"description": "Render flowcharts using flowchart.js markup.",
+	"description": "Render flowcharts using flowchart.js syntax.",
 	"author": "land0r",
 	"authorUrl": "https://github.com/land0r",
 	"fundingUrl": "https://buymeacoffee.com/land0r",
