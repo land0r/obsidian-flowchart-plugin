@@ -1,4 +1,4 @@
-# Obsidian Flowchart Plugin
+# Flowchart Plugin
 
 ![Version](https://img.shields.io/github/v/tag/land0r/obsidian-flowchart-plugin?label=version)
 ![Build Status](https://github.com/land0r/obsidian-flowchart-plugin/actions/workflows/ci.yml/badge.svg)
