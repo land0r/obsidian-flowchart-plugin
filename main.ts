@@ -42,8 +42,6 @@ export default class FlowchartPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
-		console.log('Flowchart plugin loaded');
-
 		// Register the markdown post processor for 'flowchart' code blocks
 		this.registerMarkdownCodeBlockProcessor('flowchart', (source, el, ctx) => {
 			this.renderFlowchart(source, el);
@@ -69,7 +67,6 @@ export default class FlowchartPlugin extends Plugin {
 				// Apply a fix for deprecated xlink attributes
 				this.fixXlinkAttributes(container);
 			} catch (error) {
-				console.error('Error rendering flowchart: ', error);
 				el.createEl('div', {
 					cls: 'error-message',
 					text: 'Failed to render flowchart. Check your input.',
@@ -81,8 +78,6 @@ export default class FlowchartPlugin extends Plugin {
 	private mergeSymbolSettings(
 		config: Record<string, any>
 	): Record<string, any> {
-		console.log(config);
-
 		// Ensure symbols inherit main settings if not explicitly defined
 		const {
 			'font-color': fontColor,
@@ -124,9 +119,7 @@ export default class FlowchartPlugin extends Plugin {
 		});
 	}
 
-	onunload() {
-		console.log('Flowchart plugin unloaded');
-	}
+	onunload() {}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
@@ -275,9 +268,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			.setDesc('Reset all settings to their default values.')
 			.addButton((button) =>
 				button.setButtonText('Reset').onClick(async () => {
-					console.log('Before reset:', this.plugin.settings);
 					this.plugin.settings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
-					console.log('After reset:', this.plugin.settings);
 					await this.plugin.saveSettings();
 					this.display();
 				})
