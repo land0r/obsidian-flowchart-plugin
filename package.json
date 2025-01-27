@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-flowchart-plugin",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "A plugin for rendering flowcharts using flowchart.js",
 	"main": "main.js",
 	"scripts": {
