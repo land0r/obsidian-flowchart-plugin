@@ -143,7 +143,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'Flowchart Plugin Settings' });
+		containerEl.createEl('h2', { text: 'Flowchart customization' });
 
 		this.addThemeNotice(containerEl);
 
@@ -154,7 +154,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 	private addFlowchartSettings(containerEl: HTMLElement): void {
 		new Setting(containerEl)
-			.setName('Line Width')
+			.setName('Line width')
 			.setDesc('Set the line width for the flowchart.')
 			.addText((text) =>
 				text
@@ -166,7 +166,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Line Length')
+			.setName('Line length')
 			.setDesc('Set the line length for the flowchart.')
 			.addText((text) =>
 				text
@@ -178,7 +178,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Yes Text')
+			.setName('Yes text')
 			.setDesc('Text for Yes responses in the flowchart.')
 			.addText((text) =>
 				text
@@ -190,7 +190,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('No Text')
+			.setName('No text')
 			.setDesc('Text for No responses in the flowchart.')
 			.addText((text) =>
 				text
@@ -202,7 +202,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Font Size')
+			.setName('Font size')
 			.setDesc('Set the font size for the flowchart.')
 			.addText((text) =>
 				text
@@ -214,7 +214,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Font Color')
+			.setName('Font color')
 			.setDesc('Set the font color for the flowchart.')
 			.addColorPicker((picker) =>
 				picker
@@ -226,7 +226,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Line Color')
+			.setName('Line color')
 			.setDesc('Set the line color for the flowchart.')
 			.addColorPicker((picker) =>
 				picker
@@ -238,7 +238,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Element Color')
+			.setName('Element color')
 			.setDesc('Set the element color for the flowchart.')
 			.addColorPicker((picker) =>
 				picker
@@ -250,7 +250,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName('Fill Color')
+			.setName('Fill color')
 			.setDesc('Set the background fill color for the flowchart.')
 			.addColorPicker((picker) =>
 				picker
@@ -264,7 +264,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 	private addResetButton(containerEl: HTMLElement): void {
 		new Setting(containerEl)
-			.setName('Reset Settings')
+			.setName('Reset settings')
 			.setDesc('Reset all settings to their default values.')
 			.addButton((button) =>
 				button.setButtonText('Reset').onClick(async () => {
