@@ -143,7 +143,9 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'Flowchart customization' });
+		new Setting(containerEl)
+			.setName('Flowchart customization')
+			.setHeading();
 
 		this.addThemeNotice(containerEl);
 
@@ -179,7 +181,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('Yes text')
-			.setDesc('Text for Yes responses in the flowchart.')
+			.setDesc('Text for "yes" responses in the flowchart.')
 			.addText((text) =>
 				text
 					.setValue(this.plugin.settings.config['yes-text'])
@@ -191,7 +193,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('No text')
-			.setDesc('Text for No responses in the flowchart.')
+			.setDesc('Text for "no" responses in the flowchart.')
 			.addText((text) =>
 				text
 					.setValue(this.plugin.settings.config['no-text'])
@@ -281,9 +283,9 @@ class FlowchartSettingTab extends PluginSettingTab {
 		let mode = '';
 
 		if (isDarkMode) {
-			mode = 'Dark';
+			mode = 'dark';
 		} else if (isLightMode) {
-			mode = 'Light';
+			mode = 'light';
 		}
 
 		if (!mode) {
@@ -291,7 +293,7 @@ class FlowchartSettingTab extends PluginSettingTab {
 		}
 
 		containerEl.createEl('div', {
-			text: `You are in ${mode} Mode. Adjust colors for better visibility!`,
+			text: `You are in ${mode} mode. Adjust colors for better visibility!`,
 			cls: 'theme-notice',
 		});
 	}
