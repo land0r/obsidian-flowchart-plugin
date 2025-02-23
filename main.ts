@@ -57,7 +57,7 @@ export default class FlowchartPlugin extends Plugin {
 				const config = this.mergeSymbolSettings(this.settings.config);
 				const diagram = flowchart.parse(source);
 				const container = el.createEl('div', {
-					cls: 'obsidian-flowchart-container',
+					cls: 'flowchart-container',
 				});
 				diagram.drawSVG(container, config);
 				container
