@@ -143,10 +143,6 @@ class FlowchartSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		new Setting(containerEl)
-			.setName('Flowchart customization')
-			.setHeading();
-
 		this.addThemeNotice(containerEl);
 
 		this.addFlowchartSettings(containerEl);
